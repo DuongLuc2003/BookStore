@@ -1,0 +1,11 @@
+.special-product-card {
+    padding: 20px 10px;
+    border-radius: 10px;
+    background-color: white;
+}
+.special-product-card .badge {
+    background-color: #eb353b00 !important;
+}
+.famous-card img {
+    width: 130%;
+}

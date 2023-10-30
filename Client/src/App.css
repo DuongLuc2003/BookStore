@@ -1,0 +1,108 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --color-131921:#131921;
+  --color-febd69: #febd69;
+  --color-232f3e: #232f3e;
+  --color-3b4149: #3b4149;
+  --color-f5f5f7: #f5f5f7;
+  --color-ededed: #ededed;
+  --color-777777: #777777;
+  --color-bf4800: #bf4800;
+  --color-1c1c1b: #1c1c1b;
+
+}
+body {
+  font-family: "Roboto";
+}
+.gap-10 {
+  gap:10px
+}
+.gap-15 {
+  gap:15px
+}
+.gap-30 {
+  gap:30px
+}
+.button {
+  background-color: var(--color-232f3e);
+  color: white;
+  font-size: 14px;
+  padding: 13px 33px;
+  border-radius: 25px;
+}
+.button:hover {
+  background-color: var(--color-febd69);
+  color: white;
+  color: var(#131921)
+}
+.card-wrapper {
+  background-color: white;
+  box-shadow: 0 0 10px #0000001a;
+  padding: 15px;
+}
+.section-heading {
+  font-size: 26px;
+  line-height: 32px;
+  font-weight: 500;
+  margin-bottom: 30px;
+  border-radius: 10px;
+}
+.auth-card h3 {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--color-777777);
+}
+.auth-card .form-control {
+  height: 50px;
+  background-color: var(--color-f5f5f7);
+  color: var(--color-777777);
+  font-size: 14px;
+  border-radius: 10px;
+  border-color: transparent;
+}
+.auth-card a {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--color-1c1c1b);
+}
+.auth-card .signup {
+  background-color: var(--color-febd69);
+  color: var(--color-131921);
+}
+.auth-card .signup:hover {
+    background-color: var(--color-13192);
+    color: white;
+}
+.auth-card p {
+  font-size: 13px;
+  color: var(--color-777777);
+}
+.main-product-details a.review-btn,
+.t-review{
+   color: var(--color-777777);
+   font-size: 13px;
+}
+.product-heading {
+  font-size: 14px;
+  color: var(--color-1c1c1b);
+  margin-bottom: 0px;
+}
+.product-data {
+  font-size: 13px;
+  columns: var(--color-777777);
+  margin-bottom: 0px;
+}
+.product-heading {
+  font-weight: 500;
+}
+.border-bottom {
+  border-bottom: 1px solid var(--color-3b4149);
+}
+section {
+  background-color: #f5f5f7;
+}
