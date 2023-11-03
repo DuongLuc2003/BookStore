@@ -9,28 +9,37 @@ import Contact from '../pages/UserSide/Contact.tsx';
 import OurStore from '../pages/UserSide/OurStore.tsx';
 import Blog from '../pages/UserSide/Blog.tsx'
 import Checkout from '../pages/UserSide/Checkout.tsx';
-import Shop from '../pages/Shop.tsx';
 import Signup from '../pages/UserSide/Signup.tsx';
 import Signin from '../pages/UserSide/Signin.tsx';
 import ForgotPass from '../pages/UserSide/ForgotPass.tsx';
 import ResetPassword from '../pages/UserSide/ResetPassword.tsx';
 import WishList from '../pages/UserSide/WishList.tsx';
-import Productdetail from '../pages/Productdetail.tsx';
 import SingleBlog from '../pages/UserSide/SingleBlog.tsx';
 import SingleProduct from '../pages/UserSide/SingleProduct.tsx';
-import LayoutAdmin from '../components/Layouts/LayoutAdmin/LayoutAdmin.tsx';
-import Dashboard from '../pages/admin/dashbroad/index.tsx';
-import AdminProduct from '../features/product/index.tsx';
-import AdminUser from '../features/auth/index.tsx';
-import AdminProductAdd from '../features/product/pages/Add/index.tsx';
-import AdminProductEdit from '../features/product/pages/Edit/index.tsx';
 import Layout from '../components/Layouts/LayoutWebsite/Layout.tsx';
+import LayoutAdmin from '../components/Layouts/LayoutAdmin/LayoutAdmin.tsx';
+import Dashboard from '../pages/Admin/Dashboard.tsx';
+import Enquiries from '../pages/Admin/Enquiries.tsx';
+import Bloglist from '../pages/Admin/Bloglist.tsx';
+import AddBlog from '../pages/Admin/Addblog.tsx';
+import Categorieslist from '../pages/Admin/Categorieslist.tsx';
+import Orders from '../pages/Admin/Orders.tsx';
+import Customers from '../pages/Admin/Customers.tsx';
+import Blogcatlist from '../pages/Admin/Blogcatlist.tsx';
+import Brandlist from '../pages/Admin/Brandlist.tsx';
+import Productlist from '../pages/Admin/Productlist.tsx';
 import ProductCompare from '../pages/UserSide/ProductCompare.tsx';
 import ProtectedRoute from './ProtectedRoute.tsx';
 import ShippingPolicy from '../pages/UserSide/ShippingPolicy.tsx';
 import TermAndContions from '../pages/UserSide/TermAndContions.tsx';
 import RefundPolicy from '../pages/UserSide/RefundPolicy.tsx';
 import PrivacyPolicy from '../pages/UserSide/PrivacyPolicy.tsx';
+import Addblogcat from '../pages/Admin/Addblogcat.tsx';
+import Editblog from '../pages/Admin/Editblog.tsx';
+import Addcategory from '../pages/Admin/Addcategory.tsx';
+import Addbrand from '../pages/Admin/Addbrand.tsx';
+import Addproduct from '../pages/Admin/Addproduct.tsx';
+import Editproduct from '../pages/Admin/Editproduct.tsx';
 export const router = createBrowserRouter([
   {
     path: '/',
@@ -50,9 +59,7 @@ export const router = createBrowserRouter([
       { path: '/term-contions', element: <TermAndContions /> },
       { path: '/privacy-policy', element: <PrivacyPolicy /> },
       { path: '/refund-policy', element: <RefundPolicy /> },
-      { path: 'Shop', element: <Shop /> },
-      { path: 'Shop/:id', element: <Productdetail /> },
-      { path: 'Cart', element: <Cart /> },
+      { path: '/cart', element: <Cart /> },
       { path: '/checkout', element: <Checkout/>},
       { path: 'Login', element: <Signin /> },
       { path: '/Signup', element: <Signup /> },
@@ -66,11 +73,26 @@ export const router = createBrowserRouter([
     element: <LayoutAdmin />,
     children: [
       { index: true, element: <Navigate to='dashboard' /> },
-      { path: 'dashboard', element: <Dashboard /> },
-      { path: 'product', element: <AdminProduct /> },
-      { path: 'user', element: <AdminUser /> },
-      { path: 'product/add', element: <AdminProductAdd /> },
-      { path: 'product/:idProduct/edit', element: <AdminProductEdit /> },
+      { path: 'dashboard', element: <Dashboard/> },
+      { path: 'products', element: <Productlist/> },
+      { path: 'product-add', element: <Addproduct/> },
+      { path: 'product-edit/:id', element: <Editproduct/> },
+      { path: 'enquiries', element: <Enquiries/> },
+      { path: 'brand-add', element: <Addbrand/> },
+      { path: 'blog-list', element: <Bloglist/> },
+      { path: 'blog-add', element: <AddBlog/> },
+      { path: 'blog-edit/:id', element: <Editblog/> },
+      { path: 'blog-category', element: <Addblogcat/> },
+      { path: 'blog-category-list', element: <Blogcatlist/> },
+      { path: 'category-add', element: <Addcategory/> },
+      { path: 'orders', element: <Orders/> },
+      { path: 'customers', element: <Customers/> },
+      { path: 'categories', element: <Categorieslist/> },
+      { path: 'brands', element: <Brandlist/> },
+      // { path: 'product', element: <AdminProduct /> },
+      // { path: 'user', element: <AdminUser /> },
+      // { path: 'product/add', element: <AdminProductAdd /> },
+      // { path: 'product/:idProduct/edit', element: <AdminProductEdit /> },
     ],
   },
 ]);
