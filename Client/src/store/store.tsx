@@ -1,43 +1,20 @@
-import { Action, ThunkAction, combineReducers, configureStore } from "@reduxjs/toolkit";
-import storage from 'redux-persist/lib/storage';
-import rootReducer from './rootReducer';
-import productApi, { productReducer } from "../api/product";
-import authApi from '../api/auth';
-import uploadApi from "../api/upload";
-import {
-    FLUSH,
-    PAUSE,
-    PERSIST,
-    PURGE,
-    REGISTER,
-    REHYDRATE,
-    persistReducer,
-    persistStore,
-} from 'redux-persist';
-
-const persistConfig = {
-    key: 'root',
-    storage,
-    whitelist: ['cart']
-  };    
-const middleware = [productApi.middleware, authApi.middleware, uploadApi.middleware]
-const persistedReducer = persistReducer(persistConfig, rootReducer);
+import { configureStore } from "@reduxjs/toolkit";
+import authReducer from "../features/auth/authSlice";
+import customerReducer from "../features/customers/customerSlice";
+import productReducer from "../features/product/productSlice";
+import brandReducer from "../features/brand/brandSlice";
+import pCategoriesReducer from "../features/pcategory/pcategorySlice";
+import blogReducer from "../features/blogs/blogSlice";
+import blogCateReducer from "../features/bcategory/bcategorySlice";
 export const store = configureStore({
-    reducer: persistedReducer,
-    middleware: (getDefaultMiddleware) =>
-        getDefaultMiddleware({
-            serializableCheck: {
-                ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-            },
-        }).concat(...middleware),
-})
-
-export type AppDispatch = typeof store.dispatch
-export type RootState = ReturnType<typeof store.getState>
-export type AppThunk<ReturnType = void> = ThunkAction<
-    ReturnType,
-    RootState,
-    unknown,
-    Action<string>
->
-export default persistStore(store)
+  reducer: {
+    auth: authReducer,
+    customer: customerReducer,
+    product: productReducer,
+    brand: brandReducer,
+    pcategories: pCategoriesReducer,
+    bCategories: blogCateReducer,
+    blog: blogReducer,
+    
+  },
+});

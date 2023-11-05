@@ -22,7 +22,6 @@ import Dashboard from '../pages/Admin/Dashboard.tsx';
 import Enquiries from '../pages/Admin/Enquiries.tsx';
 import Bloglist from '../pages/Admin/Bloglist.tsx';
 import AddBlog from '../pages/Admin/Addblog.tsx';
-import Categorieslist from '../pages/Admin/Categorieslist.tsx';
 import Orders from '../pages/Admin/Orders.tsx';
 import Customers from '../pages/Admin/Customers.tsx';
 import Blogcatlist from '../pages/Admin/Blogcatlist.tsx';
@@ -40,6 +39,7 @@ import Addcategory from '../pages/Admin/Addcategory.tsx';
 import Addbrand from '../pages/Admin/Addbrand.tsx';
 import Addproduct from '../pages/Admin/Addproduct.tsx';
 import Editproduct from '../pages/Admin/Editproduct.tsx';
+import Pcategorieslist from '../pages/Admin/Pcategorieslist.tsx';
 export const router = createBrowserRouter([
   {
     path: '/',
@@ -87,7 +87,7 @@ export const router = createBrowserRouter([
       { path: 'category-add', element: <Addcategory/> },
       { path: 'orders', element: <Orders/> },
       { path: 'customers', element: <Customers/> },
-      { path: 'categories', element: <Categorieslist/> },
+      { path: 'categories', element: <Pcategorieslist/> },
       { path: 'brands', element: <Brandlist/> },
       // { path: 'product', element: <AdminProduct /> },
       // { path: 'user', element: <AdminUser /> },

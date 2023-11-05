@@ -2,26 +2,24 @@ import React , {useEffect, useState}from 'react'
 import { Table } from 'antd'
 import type { ColumnsType } from 'antd/es/table';
 import { useDispatch, useSelector } from 'react-redux';
-import { getBlogs } from '../../features/blogs/blogSlice';
 import { Link } from 'react-router-dom'
 import {BiEdit} from 'react-icons/bi'
 import {RiDeleteBin6Line} from 'react-icons/ri'
+import { getProductCategories } from '../../features/pcategory/pcategorySlice';
 type DataType = {
     key: number;
     title: string;
-    category:string;
-    description:string;
     action: any;
   };
   
-const Brandlist = () => {
+const Pcategorieslist = () => {
     const [loading, setLoading] = useState(false);
     const data1: DataType[] = [];
     const dispatch = useDispatch();
     useEffect(() => {
-      dispatch(getBlogs())
+      dispatch(getProductCategories())
     },[])
-    const blogState = useSelector((state:any) => state.blog.blogs)
+    const pCategoriesState = useSelector((state:any) => state.pcategories.pCategories)
     const columns: ColumnsType<DataType> = [
       {
         title: 'Sno',
@@ -34,29 +32,15 @@ const Brandlist = () => {
         sorter: (a:any, b:any) => a.title.length - b.title.length,
       },
       {
-        title: 'Category',
-        dataIndex: 'category',
-        defaultSortOrder: 'descend',
-        sorter: (a:any, b:any) => a.category.length - b.category.length,
-      },
-      {
-        title: 'Description',
-        dataIndex: 'description',
-        defaultSortOrder: 'descend',
-        sorter: (a:any, b:any) => a.description.length - b.description.length,
-      },
-      {
         title: 'Action',
         dataIndex: 'action',
       },
     ];
     
-  for (let i = 0; i < blogState.length; i++) {
+  for (let i = 0; i < pCategoriesState.length; i++) {
     data1.push({
       key: i + 1,
-      title: blogState[i].title,
-      category: blogState[i].category,
-      description: blogState[i].description,
+      title: pCategoriesState[i].title,
       action: 
       (<>
       <Link to='' className='fs-5 green'><BiEdit/></Link>
@@ -67,7 +51,7 @@ const Brandlist = () => {
   
   return (
     <div>
-    <h3 className='mb-4 title'>Blog List</h3>
+    <h3 className='mb-4 title'>Product Categories List</h3>
     <div className="">
     <Table columns={columns} dataSource={data1} /> 
     </div>
@@ -75,4 +59,4 @@ const Brandlist = () => {
   )
 }
 
-export default Brandlist
+export default Pcategorieslist

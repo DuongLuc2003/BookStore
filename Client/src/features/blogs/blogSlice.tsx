@@ -1,11 +1,11 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import productService from "./productService";
+import blogService from "./blogService";
 
-export const getProducts = createAsyncThunk(
-  "product/get-products",
+export const getBlogs = createAsyncThunk(
+  "blog/get-blogs",
   async (thunkAPI:any) => {
     try {
-      return await productService.getProducts();
+      return await blogService.getBlogs();
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
@@ -13,29 +13,29 @@ export const getProducts = createAsyncThunk(
 );
 
 const initialState = {
-  products: [],
+  blogs: [],
   isError: false,
   isLoading: false,
   isSuccess: false,
   message: "",
 };
 
-export const productSlice = createSlice({
-  name: "products",
+export const blogSlice = createSlice({
+  name: "blogs",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(getProducts.pending, (state) => {
+      .addCase(getBlogs.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(getProducts.fulfilled, (state, action) => {
+      .addCase(getBlogs.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isError = false;
         state.isSuccess = true;
-        state.products = action.payload;
+        state.blogs = action.payload;
       })
-      .addCase(getProducts.rejected, (state:any, action) => {
+      .addCase(getBlogs.rejected, (state:any, action) => {
         state.isLoading = false;
         state.isError = true;
         state.isSuccess = false;
@@ -43,4 +43,4 @@ export const productSlice = createSlice({
       });
   },
 });
-export default productSlice.reducer;
+export default blogSlice.reducer;

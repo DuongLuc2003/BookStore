@@ -23,6 +23,7 @@ const ForgotPass = () => {
                 type="email"
                 name="email"
                 placeholder="Email"
+                label="Reset Password"
                 />
                 <div className="">
                     <div className="mt-3 d-flex justify-content-center flex-column gap-15 align-items-center">

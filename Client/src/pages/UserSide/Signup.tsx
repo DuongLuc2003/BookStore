@@ -19,22 +19,26 @@ const Signup = () => {
               <CustomInput
                 type="text"
                 name="name"
-                placeholder="Name" 
+                placeholder="Name"
+                label="Name..."
               />
               <CustomInput
                  type="email"
                  name="email"
                  placeholder="Email"
+                 label="Email..."
               />
               <CustomInput
                 type="tel"
                 name="mobile"
                 placeholder="Mobile Number"
+                label="Mobile..."
               />
               <CustomInput
                 type="password"
                 name="password"
                 placeholder="Password"
+                label="Password..."
               />
                 <div className="">
                     <div className="mt-3 d-flex justify-content-center gap-15 align-items-center">
