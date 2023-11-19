@@ -9,6 +9,8 @@ import {
 import { BiSolidAddToQueue, BiCategory } from "react-icons/bi";
 import { SiAdobepremierepro } from "react-icons/si";
 import { BsCardChecklist, BsFillHouseDashFill } from "react-icons/bs";
+import { RiCouponLine } from "react-icons/ri";
+import { ImBlog } from "react-icons/im";
 import { AiFillInfoCircle } from "react-icons/ai";
 import { IoIosNotificationsOutline } from "react-icons/io";
 import { FaEdit, FaList, FaListAlt, FaBlogger } from "react-icons/fa";
@@ -100,6 +102,23 @@ const LayoutAdmin = () => {
               key: "orders",
               icon: <FaListAlt className="fs-4" />,
               label: <Link to="/admin/orders">Orders</Link>,
+            },
+            {
+              key: "marketing",
+              icon: <RiCouponLine className="fs-4" />,
+              label: "Marketing",
+              children: [
+                {
+                  key: "coupon-add",
+                  icon: <ImBlog className="fs-4" />,
+                  label: "Add Coupon",
+                },
+                {
+                  key: "coupon-list",
+                  icon: <RiCouponLine className="fs-4" />,
+                  label: "Coupon List",
+                },
+              ],
             },
             {
               key: "blogs",

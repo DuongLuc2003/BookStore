@@ -22,7 +22,7 @@ import Dashboard from '../pages/Admin/Dashboard.tsx';
 import Enquiries from '../pages/Admin/Enquiries.tsx';
 import Bloglist from '../pages/Admin/Bloglist.tsx';
 import AddBlog from '../pages/Admin/Addblog.tsx';
-import Orders from '../pages/Admin/Orders.tsx';
+import OrderList from '../pages/Admin/Orders.tsx';
 import Customers from '../pages/Admin/Customers.tsx';
 import Blogcatlist from '../pages/Admin/Blogcatlist.tsx';
 import Brandlist from '../pages/Admin/Brandlist.tsx';
@@ -40,6 +40,13 @@ import Addbrand from '../pages/Admin/Addbrand.tsx';
 import Addproduct from '../pages/Admin/Addproduct.tsx';
 import Editproduct from '../pages/Admin/Editproduct.tsx';
 import Pcategorieslist from '../pages/Admin/Pcategorieslist.tsx';
+import  { PrivateRoutes } from '../routing/PrivateRoutes.tsx';
+import Profile from '../pages/UserSide/Profile.tsx';
+import { OpenRoutes } from '../routing/OpenRoutes.tsx';
+import Orders from '../pages/UserSide/Orders.tsx';
+import ViewOrder from '../pages/Admin/OrderView.tsx';
+import Couponlist from '../pages/Admin/Couponlist.tsx';
+import AddCoupon from '../pages/Admin/AddCoupon.tsx';
 export const router = createBrowserRouter([
   {
     path: '/',
@@ -53,18 +60,31 @@ export const router = createBrowserRouter([
       { path: '/blogs', element: <Blog /> },
       { path: '/compare-product', element: <ProductCompare /> },
       { path: '/product/:id', element: <SingleProduct /> },
-      { path: '/wishlist', element: <WishList /> },
-      { path: '/blog:id', element: <SingleBlog /> },
+      { 
+        path: '/wishlist', 
+        element: <WishList />
+      },
+      { path: '/blog/:id', element: <SingleBlog /> },
       { path: '/shipping-policy', element: <ShippingPolicy /> },
       { path: '/term-contions', element: <TermAndContions /> },
       { path: '/privacy-policy', element: <PrivacyPolicy /> },
       { path: '/refund-policy', element: <RefundPolicy /> },
-      { path: '/cart', element: <Cart /> },
+      {
+        path: '/cart',
+        element: <Cart/>,
+      },
+      { path: '/my-orders', element: <Orders/>},
       { path: '/checkout', element: <Checkout/>},
-      { path: 'Login', element: <Signin /> },
-      { path: '/Signup', element: <Signup /> },
+      { path: '/my-profile', element: <Profile/>},
+      { 
+        path: 'Login', 
+        element: <OpenRoutes><Signin /></OpenRoutes> 
+      },
+      { 
+        path: '/Signup', 
+        element: <OpenRoutes><Signup /></OpenRoutes> },
       { path: '/forgot-password', element: <ForgotPass /> },
-      { path: '/reset-password', element: <ResetPassword /> },
+      { path: '/reset-password/:token', element: <ResetPassword /> },
       
     ]
   },
@@ -84,8 +104,11 @@ export const router = createBrowserRouter([
       { path: 'blog-edit/:id', element: <Editblog/> },
       { path: 'blog-category', element: <Addblogcat/> },
       { path: 'blog-category-list', element: <Blogcatlist/> },
+      { path: 'coupon-list', element: <Couponlist/> },
+      { path: 'coupon-add', element: <AddCoupon/> },
       { path: 'category-add', element: <Addcategory/> },
-      { path: 'orders', element: <Orders/> },
+      { path: 'orders', element: <OrderList/> },
+      { path: 'order/:id', element: <ViewOrder/> },
       { path: 'customers', element: <Customers/> },
       { path: 'categories', element: <Pcategorieslist/> },
       { path: 'brands', element: <Brandlist/> },

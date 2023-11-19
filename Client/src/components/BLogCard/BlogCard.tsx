@@ -3,23 +3,24 @@ import '../BLogCard/blogCard.css'
 import { Link } from 'react-router-dom'
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
-const BlogCard = () => {
+const BlogCard = (props:any) => {
+  const {id , title , description , date , image} = props;
   return (
     
        <div className="blog-card">
            <div className="card-image">
-               <img src="images/blog-1.jpg" alt="Blog" className='img-fuild w-100'/>
+               <img src={image ? image : "images/blog-1.jpg"} 
+                    alt="Blog" 
+                    className='img-fuild w-100'/>
            </div>
            <div className="blog-content">
-            <p className='date'>21 Nov , 2023</p>
+            <p className='date'>{date}</p>
             <h5 className='title h5' >
-                A beautiful sunday morning renaisance
+                {title}
             </h5>
-            <p className='desc'>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-             sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            <p className='desc'dangerouslySetInnerHTML={{ __html: description?.substr(0,70) + '...' }} >
             </p>
-            <Link to='/blog:id' className='button'>Read More</Link>
+            <Link to={'/blog/'+id} className='button'>Read More</Link>
            </div>
        </div>
   )

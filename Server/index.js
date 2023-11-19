@@ -18,7 +18,6 @@ const cors = require('cors')
 const { notFound, errorHandle } = require('./middlewares/errorHandle');
 const cookieParser = require("cookie-parser") 
 const morgan = require('morgan')
-
 dbConnect()
 app.use(cors())
 app.use(morgan("dev"))

@@ -1,15 +1,28 @@
-import React from "react";
+import React, { useEffect } from "react";
 import BreadCrumb from "../../components/BreadCrumb/BreadCrumb";
 import Meta from "../../components/Meta/Meta";
 import "../../styles/singleBlog.css";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import {BsArrowLeft}  from 'react-icons/bs'
 import Container from "../../components/Container/Container";
+import { useDispatch , useSelector } from "react-redux";
+import { getBlog } from "../../features/blogs/blogSlice";
+
 const SingleBlog = () => {
+  const blogState = useSelector((state: any) => state?.blog?.singleBlog);
+  const location = useLocation();
+  const getBlogId = location.pathname.split('/')[2]
+  const dispatch = useDispatch()
+  useEffect(() => {
+    getAblog();
+  },[])
+  const getAblog = () => {
+    dispatch(getBlog(getBlogId))
+  }
   return (
     <>
-      <Meta title={"Dynamic Blog Name"} />
-      <BreadCrumb title="Dynamic Blog Name" />
+      <Meta title={blogState?.title} />
+      <BreadCrumb title={blogState?.title} />
       <Container class1="blog-wrapper home-wrapper-2 py-5">
           <div className="row">
             <div className="col-12">
@@ -19,28 +32,15 @@ const SingleBlog = () => {
                     Go back to BLogs
                 </Link>
                 <h3 className="title">
-                  A Beautiful Sunday Morning Resaissance
+                  {blogState?.title}
                 </h3>
                 <img
-                  src="images/blog-1.jpg"
+                  src={blogState?.images[0]?.url ? blogState?.images[0]?.url : 'images/blog-1.jpg'}
                   alt="blog"
                   className="img-fluid w-100 my-4"
                 />
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Vivamus hendrerit magna nec sodales pharetra. Nam vel nibh mi.
-                  Morbi mollis finibus felis a imperdiet. Mauris posuere tempus
-                  iaculis. Donec pretium nisl augue, et mattis nisi lobortis ac.
-                  Orci varius natoque penatibus et magnis dis parturient montes,
-                  nascetur ridiculus mus. Donec egestas varius nulla scelerisque
-                  convallis. Mauris eros metus, interdum sed arcu vitae, ornare
-                  porta lorem. Nulla neque mauris, volutpat vel scelerisque non,
-                  finibus eu diam. Pellentesque consectetur ornare tortor.
-                  Mauris eu blandit nulla. Pellentesque nunc ipsum, placerat ac
-                  ex id, convallis cursus est. Donec quis iaculis augue. Ut
-                  mattis arcu ac aliquet imperdiet. Curabitur accumsan est ac
-                  suscipit rhoncus.
-                </p>
+                <p className='desc'dangerouslySetInnerHTML={{ __html: blogState?.description }} >
+            </p>
               </div>
             </div>
           </div>

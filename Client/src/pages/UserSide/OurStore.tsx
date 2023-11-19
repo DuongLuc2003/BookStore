@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import BreadCrumb from '../../components/BreadCrumb/BreadCrumb.tsx'
 import Meta from '../../components/Meta/Meta.tsx'
 import '../../styles/ourstore.css'
@@ -9,8 +9,43 @@ import { MdOutlineCalendarViewWeek,
 import ReactStars from "react-rating-stars-component";
 import ProductCard from '../../components/ProductCard/ProductCard.tsx'
 import Container from '../../components/Container/Container.tsx'
+import { useDispatch, useSelector } from 'react-redux'
+import { getProducts } from '../../features/product/productSlice.tsx'
 const OurStore = () => {
   const [grid,setGrid] = useState(4);
+  const productState = useSelector((state:any) => state?.product?.products)
+  const [brands,setBrands] = useState([])
+  const [categories,setCategories] = useState([])
+  const [tags,setTags] = useState([])
+//   Filter States
+  const [category,setCategory] = useState([])
+  const [tag,setTag] = useState([])
+  const [minPrice,setMinPrice] = useState(null)
+  const [maxPrice,setMaxPrice] = useState(null)
+  const [sort,setSort] = useState(null)
+  console.log(sort)
+  useEffect(() => {
+    let newBrands = []
+    let category=[]
+    let newtags = []
+    for (let index = 0; index < productState.length; index++) {
+        const element = productState[index];
+        newBrands.push(element.brand) 
+        category.push(element.category)
+        newtags.push(element.tags)
+    }
+    setBrands(newBrands)
+    setCategories(category)
+    setTags(newtags)
+  },[productState])
+  const dispatch = useDispatch()
+  useEffect(()=>{
+    getAllProducts();
+  },[sort,minPrice,maxPrice])
+  const getAllProducts = () => {
+      dispatch(getProducts({sort,minPrice,maxPrice}))
+  }
+
   return (
     <div>
         <Meta title={'BookStore'}/>
@@ -24,6 +59,11 @@ const OurStore = () => {
                             Shop By Categories 
                         <div>
                             <ul className='ps-0 mt-3'>
+                                {/* {
+                                categories && [...new Set(categories)].map((item,index) => {
+                                    return <li key={index} onClick={() => setCategory(item)}>{item}</li>
+                                })
+                                } */}
                                 <li>Featured Book</li>
                                 <li>Famous Book</li>
                                 <li>Special Book</li>
@@ -70,6 +110,7 @@ const OurStore = () => {
                                    className='form-control'
                                    placeholder="from"
                                    id="floatingInput"
+                                   onChange={(e) => setMinPrice(e.target.value)}
                                    />
                             <label className="price-placeholder" htmlFor="floatingInput">
                                    From...
@@ -80,6 +121,7 @@ const OurStore = () => {
                                    className='form-control'
                                    placeholder="to"
                                    id="floatingInput1"
+                                   onChange={(e) => setMaxPrice(e.target.value)}
                                    />
                             <label className="price-placeholder" htmlFor="floatingInput">
                                    to
@@ -182,17 +224,18 @@ const OurStore = () => {
                              id="" 
                              className='form-control form-select'
                              defaultValue={"manual"}
+                             onChange={(e) => setSort(e.target.value)}
                              >
                         <option value="manual">Featured</option>
                         <option value="best-selling">
                             Best selling
                         </option>
-                        <option value="title-asending">Alphabetically, A-Z</option>
-                        <option value="title-descending">Alphabetically, Z-A</option>
-                        <option value="price-asending">Price, low to hight</option>
-                        <option value="price-descending">Price, hight to low</option>
-                        <option value="created-asending">Date, old to new</option>  
-                        <option value="created-descending">Date, new to old</option>      
+                        <option value="title">Alphabetically, A-Z</option>
+                        <option value="-title">Alphabetically, Z-A</option>
+                        <option value="price">Price, low to hight</option>
+                        <option value="-price">Price, hight to low</option>
+                        <option value="createdAt">Date, old to new</option>  
+                        <option value="-createdAt">Date, new to old</option>      
                      </select>
                         </div>
                     <div className="d-flex align-items-center gap-10">
@@ -230,10 +273,10 @@ const OurStore = () => {
                     
                     <div className="products-list pb-5">
                         <div className="d-flex gap-10 flex-wrap">
-                        <ProductCard grid={grid}/>
-                        <ProductCard grid={grid}/>
-                        <ProductCard grid={grid}/>
-                        <ProductCard grid={grid}/>  
+                        <ProductCard data={productState} grid={grid}/>
+                        {/* <ProductCard data={productState} grid={grid}/>
+                        <ProductCard data={productState} grid={grid}/>
+                        <ProductCard data={productState} grid={grid}/>   */}
                         </div>
                         
                     </div>

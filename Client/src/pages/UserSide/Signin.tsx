@@ -10,9 +10,10 @@ import * as Yup from "yup";
 import { useDispatch,useSelector} from "react-redux";
 import { login } from "../../features/auth/authSlice";
 const Signin = () => {
+  const authState = useSelector(state => state.auth)
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  let userSchema = Yup.object().shape({
+  const userSchema = Yup.object().shape({
     email: Yup.string()
       .email("Vui lòng nhập đúng định dạng email")
       .required("Vui Lòng nhập email"),
@@ -26,7 +27,11 @@ const Signin = () => {
     validationSchema: userSchema,
     onSubmit: (values) => {
       dispatch(login(values))
-      alert(JSON.stringify(values, null, 2));
+      setTimeout(() => {
+        console.log(authState.isSuccess)        
+          navigate('/')
+
+      },500)
     },
   });
   const {user,isLoading,isError,isSuccess,message} = useSelector((state) => state.auth)
