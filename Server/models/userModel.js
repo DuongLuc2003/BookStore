@@ -26,7 +26,7 @@ var userSchema = new mongoose.Schema({
     },
     role: {
         type: String,
-        default: "User"
+        default: "users"
     },
     isBlocked: {
         type: Boolean,

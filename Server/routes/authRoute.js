@@ -24,7 +24,10 @@ const { createUser,
         getOrders,
         updateOrderStatus,
         getAllOrders,
-        getOrderByUserId} = require('../controller/userController')
+        getOrderByUserId,
+        removeProductfromCart,
+        updateProductCart,
+        getMyOrders} = require('../controller/userController')
 const { authMiddleware , isAdmin} = require("../middlewares/authMiddleware")
 router.post('/register',createUser);
 router.post('/forgot-password',forgotPasswordToken);
@@ -34,20 +37,23 @@ router.post('/login', loginUserController)
 router.post('/admin-login', loginAdminController)
 router.post('/cart', authMiddleware,userCart)
 router.post('/cart/applycoupon',authMiddleware,applyCoupon)
-router.post('/cart/cash-order',authMiddleware,createOrder)
+router.post('/cart/create-order',authMiddleware,createOrder)
 router.get('/all-users', getallUser)
+router.get('/getmyorders', authMiddleware,getMyOrders)
 router.get('/get-orders', authMiddleware,getOrders)
-router.get('/get-order/:id',authMiddleware,getOrderByUserId)
-router.get('/getall-order/',authMiddleware,getAllOrders)
+router.get('/getorderbyuser/:id',authMiddleware,getOrderByUserId)
+router.get('/getallorders',authMiddleware,getAllOrders)
 router.get('/refresh',handleRefreshToken)
 router.get('/logout',logout)
 router.get('/wishlist', authMiddleware,getWishlist)
 router.get('/cart', authMiddleware,getUserCart)
-router.put('/:id',authMiddleware,isAdmin,updateUser)
+router.put('/edit-user',authMiddleware,isAdmin,updateUser)
 router.put('/update-order/:id',authMiddleware,isAdmin,updateOrderStatus)
 router.get('/save-address', authMiddleware,saveAddress)
 router.get('/:id', authMiddleware,isAdmin ,getUser)
 router.delete('/empty-cart', authMiddleware,emptyCart)
+router.delete('/delete-product-cart/:cartItemId', authMiddleware,removeProductfromCart)
+router.put('/update-product-cart/:cartItemId/:newQuantity', authMiddleware,updateProductCart)
 router.delete('/:id',deleteUser)
 router.put('/block-user/:id',authMiddleware,isAdmin,blockUser)
 router.put('/unblock-user/:id',authMiddleware,isAdmin,unblockUser)

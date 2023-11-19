@@ -12,6 +12,7 @@ const couponRouter = require('./routes/couponRoute')
 const authorRouter = require('./routes/authorRoute')
 const uploadRouter = require('./routes/uploadRoute');
 const tagRouter = require('./routes/tagRoute')
+const enquireRouter = require('./routes/enquireRoute')
 const dbConnect = require('./config/dbConnect');
 const bodyParser = require('body-parser');
 const cors = require('cors')
@@ -34,6 +35,7 @@ app.use("/api/brand",brandRouter)
 app.use("/api/coupon",couponRouter)
 app.use("/api/author",authorRouter)
 app.use("/api/tag",tagRouter)
+app.use("/api/enquiry",enquireRouter)
 app.use("/api/upload", uploadRouter);
 app.use(notFound)
 app.use(errorHandle)
